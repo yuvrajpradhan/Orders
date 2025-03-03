@@ -10,7 +10,8 @@ const ProductOrderApp = () => {
     { id: 3, segment: 'Home UPS', model: 'STPB150', c20Ah: 150, warranty: '36+24*', price: 9491 },
     { id: 4, segment: 'Home UPS', model: 'STPB180', c20Ah: 180, warranty: '36+24*', price: 10188 },
     { id: 5, segment: 'Home UPS', model: 'STPB200', c20Ah: 200, warranty: '36+24*', price: 10899 },
-    { id: 6, segment: 'Home UPS', model: 'STPB225', c20Ah: 225, warranty: '36+24*', price: 12552 }
+    { id: 6, segment: 'Home UPS', model: 'STPB225', c20Ah: 225, warranty: '36+24*', price: 12552 },
+   
   ];
 
   const [products, setProducts] = useState(
