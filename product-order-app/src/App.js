@@ -63,7 +63,7 @@ const ProductOrderApp = () => {
       'service_bq2d1xt',
       'template_xhlfgdi',
       {
-        to_email: 'Yuvraj.pradhan.2004@gmail.com',
+        to_email: 'yogeshdatia@gmail.com',
         firm_name: formData.firmName,
         mobile_number: formData.mobileNumber,
         city: formData.city,
