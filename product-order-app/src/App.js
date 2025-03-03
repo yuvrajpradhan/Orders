@@ -5,12 +5,12 @@ import './App.css';
 
 const ProductOrderApp = () => {
   const initialProducts = [
-    { id: 1, segment: 'Home UPS', model: 'STPB100', c20Ah: 100, warranty: '36+24*', price: 8142 },
-    { id: 2, segment: 'Home UPS', model: 'STPB130', c20Ah: 130, warranty: '36+24*', price: 8754 },
-    { id: 3, segment: 'Home UPS', model: 'STPB150', c20Ah: 150, warranty: '36+24*', price: 9491 },
-    { id: 4, segment: 'Home UPS', model: 'STPB180', c20Ah: 180, warranty: '36+24*', price: 10188 },
-    { id: 5, segment: 'Home UPS', model: 'STPB200', c20Ah: 200, warranty: '36+24*', price: 10899 },
-    { id: 6, segment: 'Home UPS', model: 'STPB225', c20Ah: 225, warranty: '36+24*', price: 12552 },
+    { id: 1, segment: 'Tubular Inverter battery', model: 'STPB100', c20Ah: 100, warranty: '36+24*', price: 8142 },
+    { id: 2, segment: 'Tubular Inverter battery', model: 'STPB130', c20Ah: 130, warranty: '36+24*', price: 8754 },
+    { id: 3, segment: 'Tubular Inverter battery', model: 'STPB150', c20Ah: 150, warranty: '36+24*', price: 9491 },
+    { id: 4, segment: 'Tubular Inverter battery', model: 'STPB180', c20Ah: 180, warranty: '36+24*', price: 10188 },
+    { id: 5, segment: 'Tubular Inverter battery', model: 'STPB200', c20Ah: 200, warranty: '36+24*', price: 10899 },
+    { id: 6, segment: 'Tubular Inverter battery', model: 'STPB225', c20Ah: 225, warranty: '36+24*', price: 12552 },
     { id: 7, segment: 'E rickshaw battery', model: 'SMD1200', c20Ah: 100, warranty: '7', price: 5599 },
     { id: 8, segment: 'E rickshaw battery', model: 'SMD1400', c20Ah: 110, warranty: '9', price: 6099 },
     { id: 9, segment: 'E rickshaw battery', model: 'SMD1500', c20Ah: 120, warranty: '12', price: 6599 },
@@ -124,7 +124,7 @@ const ProductOrderApp = () => {
             <div className="product-item" key={product.id}>
               <strong>
                 <h3>{product.model} ({product.c20Ah}Ah)</h3>
-                <p>Segment type: Tubular Inverter battery</p>
+                <p>Segment type: {product.segment}</p>
                 <p>Basic Price (GST 28% Additional) = ₹{product.price.toFixed(2)}</p>
                 <p>Warranty: {product.warranty}</p>
               </strong>
