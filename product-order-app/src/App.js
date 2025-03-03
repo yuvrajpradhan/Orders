@@ -60,10 +60,10 @@ const ProductOrderApp = () => {
     }
 
     emailjs.send(
-      'service_rz7rjr1',
+      'service_1v5gxov',
       'template_xhlfgdi',
       {
-        to_email: 'yuvraj.pradhan.2004@gmail.com',
+        to_email: 'yogeshdatia@gmail.com',
         firm_name: formData.firmName,
         mobile_number: formData.mobileNumber,
         city: formData.city,
