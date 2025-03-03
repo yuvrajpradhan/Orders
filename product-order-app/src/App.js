@@ -70,7 +70,7 @@ const ProductOrderApp = () => {
         pin_code: formData.pinCode,
         state: formData.state,
         from_email: formData.email,
-        order_details: orderedProducts.map(p => `${p.model} (${p.c20Ah}Ah) x${p.quantity}`).join(', '),
+        order_details: orderedProducts.map(p => `${p.model} (${p.c20Ah}Ah) = ${p.quantity}`).join('\n'),
         total: `₹${total.toFixed(2)}`
       },
       'dufdgKe3mDdmfchTf'
