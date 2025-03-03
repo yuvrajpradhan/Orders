@@ -18,7 +18,6 @@ const ProductOrderApp = () => {
   );
 
   const [formData, setFormData] = useState({
-    name: '',
     firmName: '',
     mobileNumber: '',
     city: '',
@@ -60,7 +59,6 @@ const ProductOrderApp = () => {
       'template_xhlfgdi',
       {
         to_email: 'yuvraj.pradhan.2004@gmail.com',
-        name: formData.name,
         firm_name: formData.firmName,
         mobile_number: formData.mobileNumber,
         city: formData.city,
@@ -76,7 +74,7 @@ const ProductOrderApp = () => {
       setIsSubmitting(false);
       setSubmitted(true);
       setProducts(initialProducts.map(product => ({ ...product, quantity: 0 })));
-      setFormData({ name: '', firmName: '', mobileNumber: '', city: '', pinCode: '', state: '', email: '' });
+      setFormData({ firmName: '', mobileNumber: '', city: '', pinCode: '', state: '', email: '' });
 
       setTimeout(() => setSubmitted(false), 5000);
     })
@@ -99,12 +97,20 @@ const ProductOrderApp = () => {
       )}
 
       <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleInputChange} required />
+        <label>Firm Name <span style={{ color: 'red' }}>*</span></label>
         <input type="text" name="firmName" placeholder="Firm Name" value={formData.firmName} onChange={handleInputChange} required />
+        
+        <label>Mobile Number <span style={{ color: 'red' }}>*</span></label>
         <input type="text" name="mobileNumber" placeholder="Mobile Number" value={formData.mobileNumber} onChange={handleInputChange} required pattern="[0-9]{10}" title="Enter a valid 10-digit mobile number"/>
-        <input type="text" name="city" placeholder="City" value={formData.city} onChange={handleInputChange} />
+        
+        <label>City <span style={{ color: 'red' }}>*</span></label>
+        <input type="text" name="city" placeholder="City" value={formData.city} onChange={handleInputChange} required />
+        
+        <label>Pin Code</label>
         <input type="text" name="pinCode" placeholder="Pin Code" value={formData.pinCode} onChange={handleInputChange} />
+        <label>State</label>
         <input type="text" name="state" placeholder="State" value={formData.state} onChange={handleInputChange} />
+        <label>Email</label>
         <input type="email" name="email" placeholder="Email ID" value={formData.email} onChange={handleInputChange} />
 
         <h2>Select Products</h2>
