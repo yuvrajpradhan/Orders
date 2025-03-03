@@ -87,50 +87,46 @@ const ProductOrderApp = () => {
   };
 
   return (
-    <div className="order-container">
-  <img src="./image.png" alt="Left" className="side-image" />
-  
-  <div className="order-form">
-    <h1>Surya Batteries Order Form</h1>
+    <div className="container">
+      <h1>Surya Batteries Order Form</h1>
 
-    {submitted && (
-      <div className="success-message">
-        <CheckCircle size={20} color="green" />
-        <span>Order submitted successfully! Check your email.</span>
-      </div>
-    )}
+      {submitted && (
+        <div className="success-message">
+          <CheckCircle size={20} color="green" />
+          <span>Order submitted successfully! Check your email.</span>
+        </div>
+      )}
 
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="firmName" placeholder="Firm Name" value={formData.firmName} onChange={handleInputChange} required />
-      <input type="text" name="city" placeholder="City" value={formData.city} onChange={handleInputChange} required />
-      <input type="text" name="pinCode" placeholder="Pin Code" value={formData.pinCode} onChange={handleInputChange} required />
-      <input type="text" name="state" placeholder="State" value={formData.state} onChange={handleInputChange} required />
-      <input type="email" name="email" placeholder="Email ID" value={formData.email} onChange={handleInputChange} required />
-      <input type="text" name="mobileNumber" placeholder="Mobile Number" value={formData.mobileNumber} onChange={handleInputChange} required pattern="[0-9]{10}" title="Enter a valid 10-digit mobile number"/>
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="firmName" placeholder="Firm Name" value={formData.firmName} onChange={handleInputChange} required />
+        <input type="text" name="city" placeholder="City" value={formData.city} onChange={handleInputChange} required />
+        <input type="text" name="pinCode" placeholder="Pin Code" value={formData.pinCode} onChange={handleInputChange} required />
+        <input type="text" name="state" placeholder="State" value={formData.state} onChange={handleInputChange} required />
+        <input type="email" name="email" placeholder="Email ID" value={formData.email} onChange={handleInputChange} required />
+        <input type="text" name="mobileNumber" placeholder="Mobile Number" value={formData.mobileNumber} onChange={handleInputChange} required pattern="[0-9]{10}" title="Enter a valid 10-digit mobile number"/>
 
-      <h2>Select Products</h2>
-      <div className="product-list">
-        {products.map(product => (
-          <div className="product-item" key={product.id}>
-            <h3>{product.model} ({product.c20Ah}Ah)</h3>
-            <p>Price: ₹{product.price.toFixed(2)}</p>
-            <p>Warranty: {product.warranty}</p>
-            <input type="number" min="0" value={product.quantity} onChange={(e) => handleQuantityChange(product.id, e.target.value)} />
-          </div>
-        ))}
-      </div>
+        <h2>Select Products</h2>
+        <div className="product-list">
+          {products.map(product => (
+            <div className="product-item" key={product.id}>
+              <h3>{product.model} ({product.c20Ah}Ah)</h3>
+              <p>Segment type: Tubular Inverter battery</p>
+              <p>Basic Price (GST 28% Additional) = ₹{product.price.toFixed(2)}</p>
+              <p>Warranty: {product.warranty}</p>
+              <input type="number" min="0" value={product.quantity} onChange={(e) => handleQuantityChange(product.id, e.target.value)} />
+            </div>
+          ))}
+        </div>
 
-      <div className="total-container">
-        Total: ₹{total.toFixed(2)}
-      </div>
+        <div className="total-container">
+          Total: ₹{total.toFixed(2)}
+        </div>
 
-      <button type="submit" disabled={isSubmitting || total === 0}>
-        {isSubmitting ? 'Processing...' : 'Submit Order'}
-      </button>
-    </form>
-  </div>
-</div>
-
+        <button type="submit" disabled={isSubmitting || total === 0}>
+          {isSubmitting ? 'Processing...' : 'Submit Order'}
+        </button>
+      </form>
+    </div>
   );
 };
 
