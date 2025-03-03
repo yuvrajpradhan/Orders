@@ -18,12 +18,13 @@ const ProductOrderApp = () => {
   );
 
   const [formData, setFormData] = useState({
+    name: '',
     firmName: '',
+    mobileNumber: '',
     city: '',
     pinCode: '',
     state: '',
-    email: '',
-    mobileNumber: ''
+    email: ''
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,7 +41,6 @@ const ProductOrderApp = () => {
       product.id === id ? { ...product, quantity: newValue } : product
     ));
   };
-  
 
   const total = products.reduce((sum, product) => sum + (product.quantity * product.price), 0);
 
@@ -60,12 +60,13 @@ const ProductOrderApp = () => {
       'template_xhlfgdi',
       {
         to_email: 'yuvraj.pradhan.2004@gmail.com',
+        name: formData.name,
         firm_name: formData.firmName,
+        mobile_number: formData.mobileNumber,
         city: formData.city,
         pin_code: formData.pinCode,
         state: formData.state,
         from_email: formData.email,
-        mobile_number: formData.mobileNumber,
         order_details: orderedProducts.map(p => `${p.model} (${p.c20Ah}Ah) x${p.quantity}`).join(', '),
         total: `₹${total.toFixed(2)}`
       },
@@ -75,7 +76,7 @@ const ProductOrderApp = () => {
       setIsSubmitting(false);
       setSubmitted(true);
       setProducts(initialProducts.map(product => ({ ...product, quantity: 0 })));
-      setFormData({ firmName: '', city: '', pinCode: '', state: '', email: '', mobileNumber: '' });
+      setFormData({ name: '', firmName: '', mobileNumber: '', city: '', pinCode: '', state: '', email: '' });
 
       setTimeout(() => setSubmitted(false), 5000);
     })
@@ -98,21 +99,24 @@ const ProductOrderApp = () => {
       )}
 
       <form onSubmit={handleSubmit}>
+        <input type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleInputChange} required />
         <input type="text" name="firmName" placeholder="Firm Name" value={formData.firmName} onChange={handleInputChange} required />
-        <input type="text" name="city" placeholder="City" value={formData.city} onChange={handleInputChange} required />
-        <input type="text" name="pinCode" placeholder="Pin Code" value={formData.pinCode} onChange={handleInputChange} required />
-        <input type="text" name="state" placeholder="State" value={formData.state} onChange={handleInputChange} required />
-        <input type="email" name="email" placeholder="Email ID" value={formData.email} onChange={handleInputChange} required />
         <input type="text" name="mobileNumber" placeholder="Mobile Number" value={formData.mobileNumber} onChange={handleInputChange} required pattern="[0-9]{10}" title="Enter a valid 10-digit mobile number"/>
+        <input type="text" name="city" placeholder="City" value={formData.city} onChange={handleInputChange} />
+        <input type="text" name="pinCode" placeholder="Pin Code" value={formData.pinCode} onChange={handleInputChange} />
+        <input type="text" name="state" placeholder="State" value={formData.state} onChange={handleInputChange} />
+        <input type="email" name="email" placeholder="Email ID" value={formData.email} onChange={handleInputChange} />
 
         <h2>Select Products</h2>
         <div className="product-list">
           {products.map(product => (
             <div className="product-item" key={product.id}>
-              <h3>{product.model} ({product.c20Ah}Ah)</h3>
-              <p>Segment type: Tubular Inverter battery</p>
-              <p>Basic Price (GST 28% Additional) = ₹{product.price.toFixed(2)}</p>
-              <p>Warranty: {product.warranty}</p>
+              <strong>
+                <h3>{product.model} ({product.c20Ah}Ah)</h3>
+                <p>Segment type: Tubular Inverter battery</p>
+                <p>Basic Price (GST 28% Additional) = ₹{product.price.toFixed(2)}</p>
+                <p>Warranty: {product.warranty}</p>
+              </strong>
               <input type="number" min="0" value={product.quantity} onChange={(e) => handleQuantityChange(product.id, e.target.value)} />
             </div>
           ))}
