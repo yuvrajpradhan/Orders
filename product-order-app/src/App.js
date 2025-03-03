@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import emailjs from 'emailjs-com';
 import './App.css';
 
