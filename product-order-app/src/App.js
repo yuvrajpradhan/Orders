@@ -1,129 +1,3 @@
-// import React, { useState } from 'react';
-// import { Mail } from 'lucide-react';
-// import emailjs from 'emailjs-com';
-// import './App.css';
-
-// const ProductOrderApp = () => {
-//   // Updated product data from the table
-//   const initialProducts = [
-//     { id: 1, segment: 'Home UPS', model: 'STPB100', c20Ah: 100, warranty: '36+24*', price: 8142 },
-//     { id: 2, segment: 'Home UPS', model: 'STPB130', c20Ah: 130, warranty: '36+24*', price: 8754 },
-//     { id: 3, segment: 'Home UPS', model: 'STPB150', c20Ah: 150, warranty: '36+24*', price: 9491 },
-//     { id: 4, segment: 'Home UPS', model: 'STPB180', c20Ah: 180, warranty: '36+24*', price: 10188 },
-//     { id: 5, segment: 'Home UPS', model: 'STPB200', c20Ah: 200, warranty: '36+24*', price: 10899 },
-//     { id: 6, segment: 'Home UPS', model: 'STPB225', c20Ah: 225, warranty: '36+24*', price: 12552 }
-//   ];
-
-//   // State for products with quantities
-//   const [products, setProducts] = useState(
-//     initialProducts.map(product => ({ ...product, quantity: 0 }))
-//   );
-
-//   // State for form details
-//   const [formData, setFormData] = useState({
-//     firmName: '',
-//     city: '',
-//     pinCode: '',
-//     state: '',
-//     email: '',
-//     mobileNumber: ''
-//   });
-
-//   // State for submission status
-//   const [isSubmitting, setIsSubmitting] = useState(false);
-//   const [submitted, setSubmitted] = useState(false);
-
-//   // Handler for input changes
-//   const handleInputChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData({ ...formData, [name]: value });
-//   };
-
-//   // Handler for quantity change
-//   const handleQuantityChange = (id, value) => {
-//     const newValue = parseInt(value) || 0;
-//     setProducts(products.map(product => 
-//       product.id === id ? { ...product, quantity: newValue } : product
-//     ));
-//   };
-
-//   // Calculate total
-//   const total = products.reduce((sum, product) => sum + (product.quantity * product.price), 0);
-
-//   // Handler for form submission
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     setIsSubmitting(true);
-    
-//     const orderedProducts = products.filter(product => product.quantity > 0);
-//     if (orderedProducts.length === 0) {
-//       alert("Please add at least one product to your order.");
-//       setIsSubmitting(false);
-//       return;
-//     }
-    
-//     emailjs.send(
-//       'service_rz7rjr1',
-//       'template_xhlfgdi',
-//       {
-//         to_email: 'yuvraj.pradhan.2004@gmail.com',
-//         firm_name: formData.firmName,
-//         city: formData.city,
-//         pin_code: formData.pinCode,
-//         state: formData.state,
-//         from_email: formData.email,
-//         mobile_number: formData.mobileNumber,
-//         order_details: orderedProducts.map(p => `${p.model} (${p.c20Ah}Ah) x${p.quantity}`).join(', '),
-//         total: total.toFixed(2)
-//       },
-//       'dufdgKe3mDdmfchTf'
-//     )
-//     .then(() => {
-//       setIsSubmitting(false);
-//       setSubmitted(true);
-//       setProducts(initialProducts.map(product => ({ ...product, quantity: 0 })));
-//       setFormData({ firmName: '', city: '', pinCode: '', state: '', email: '', mobileNumber: '' });
-//       setTimeout(() => setSubmitted(false), 5000);
-//     })
-//     .catch(error => {
-//       console.error('Email error:', error);
-//       setIsSubmitting(false);
-//       alert('Failed to send order. Please try again.');
-//     });
-//   };
-
-//   return (
-//     <div className="container">
-//       <h1>Surya  batteries  order form</h1>
-//       {submitted && <p>Order submitted successfully! Check your email.</p>}
-      
-//       <form onSubmit={handleSubmit}>
-//         <input type="text" name="firmName" placeholder="Firm Name" value={formData.firmName} onChange={handleInputChange} required />
-//         <input type="text" name="city" placeholder="City" value={formData.city} onChange={handleInputChange} required />
-//         <input type="text" name="pinCode" placeholder="Pin Code" value={formData.pinCode} onChange={handleInputChange} required />
-//         <input type="text" name="state" placeholder="State" value={formData.state} onChange={handleInputChange} required />
-//         <input type="email" name="email" placeholder="Email ID" value={formData.email} onChange={handleInputChange} required />
-//         <input type="text" name="mobileNumber" placeholder="Mobile Number" value={formData.mobileNumber} onChange={handleInputChange} required />
-        
-//         <h2>Select Products</h2>
-//         {products.map(product => (
-//           <div key={product.id}>
-//             <p>{product.model} ({product.c20Ah}Ah) - ₹{product.price.toFixed(2)}</p>
-//             <p>Warranty: {product.warranty}</p>
-//             <input type="number" min="0" value={product.quantity} onChange={(e) => handleQuantityChange(product.id, e.target.value)} />
-//           </div>
-//         ))}
-        
-//         <p>Total: ₹{total.toFixed(2)}</p>
-//         <button type="submit" disabled={isSubmitting}>{isSubmitting ? 'Processing...' : 'Submit Order'}</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default ProductOrderApp;
-
-
 import React, { useState } from 'react';
 import { Mail, CheckCircle } from 'lucide-react';
 import emailjs from 'emailjs-com';
@@ -161,11 +35,12 @@ const ProductOrderApp = () => {
   };
 
   const handleQuantityChange = (id, value) => {
-    const newValue = Math.max(0, parseInt(value) || 0);
+    const newValue = value === '' ? '' : Math.max(0, parseInt(value) || 0);
     setProducts(products.map(product => 
       product.id === id ? { ...product, quantity: newValue } : product
     ));
   };
+  
 
   const total = products.reduce((sum, product) => sum + (product.quantity * product.price), 0);
 
@@ -235,6 +110,7 @@ const ProductOrderApp = () => {
           {products.map(product => (
             <div className="product-item" key={product.id}>
               <h3>{product.model} ({product.c20Ah}Ah)</h3>
+              <p>Segment type: Tubular Inverter battery</p>
               <p>Price: ₹{product.price.toFixed(2)}</p>
               <p>Warranty: {product.warranty}</p>
               <input type="number" min="0" value={product.quantity} onChange={(e) => handleQuantityChange(product.id, e.target.value)} />
