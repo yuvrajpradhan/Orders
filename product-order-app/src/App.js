@@ -11,7 +11,11 @@ const ProductOrderApp = () => {
     { id: 4, segment: 'Home UPS', model: 'STPB180', c20Ah: 180, warranty: '36+24*', price: 10188 },
     { id: 5, segment: 'Home UPS', model: 'STPB200', c20Ah: 200, warranty: '36+24*', price: 10899 },
     { id: 6, segment: 'Home UPS', model: 'STPB225', c20Ah: 225, warranty: '36+24*', price: 12552 },
-   
+    { id: 7, segment: 'E rickshaw battery', model: 'SMD1200', c20Ah: 100, warranty: '7', price: 5599 },
+    { id: 8, segment: 'E rickshaw battery', model: 'SMD1400', c20Ah: 110, warranty: '9', price: 6099 },
+    { id: 9, segment: 'E rickshaw battery', model: 'SMD1500', c20Ah: 120, warranty: '12', price: 6599 },
+    { id: 10, segment: 'E rickshaw battery', model: 'SMD1800', c20Ah: 100, warranty: '12', price: 7099 },
+    { id: 11, segment: 'E rickshaw battery', model: 'SMD1800', c20Ah: 100, warranty: '15', price: 7599 },
   ];
 
   const [products, setProducts] = useState(
